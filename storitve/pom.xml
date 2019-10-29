@@ -28,12 +28,12 @@
         </dependency>
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
-            <artifactId>kumuluzee-cdi-weld</artifactId>
-        </dependency>
+            <artifactId>kumuluzee-cdi</artifactId>
+        </dependency>-->
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-jta-common</artifactId>
-        </dependency> -->
+        </dependency>
     </dependencies>
 
     <build>
