@@ -1,0 +1,10 @@
+kumuluzee:
+  name: prpoVaje03
+  version: 1.0.0
+  env:
+  datasources:
+      - jndi-name: jdbc/DataBase
+        connection-url: jdbc:postgresql://localhost:5432/DataBase
+        username: postgres
+        password: postgres
+        max-pool-size: 20
