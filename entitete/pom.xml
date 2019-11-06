@@ -16,16 +16,16 @@
     </properties>
 
     <dependencies>
-        <!-- <dependency>
+        <dependency>
             <groupId>com.kumuluz.ee</groupId>
-            <artifactId>kumuluzee-jpa-common</artifactId>
-        </dependency> -->
+            <artifactId>kumuluzee-jpa-eclipselink</artifactId>
+        </dependency>
 
-         <dependency>
+         <!-- <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>org.postgresql</groupId>
