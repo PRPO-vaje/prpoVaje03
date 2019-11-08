@@ -13,16 +13,17 @@ public class StudentiZrno {
     private EntityManager em;
 
     public List<Student> getStudenti() {
+        return em.createNamedQuery("Student.getAll").getResultList();
+    }
+    public List<Student> getStudenti(String number) {
+        return em.createNamedQuery("Student.getByNumber").setParameter(1, number).getResultList();
+    }
 
-        Query q = em.createNamedQuery("Student.getAll");
+    public List<Student> getStudenti(int id) {
+        return em.createNamedQuery("Student.getByID").setParameter(1, id).getResultList();
+    }
 
-        List<Student> l = q.getResultList();
-
-        if(l==null)
-            System.out.println("null");
-        else
-            System.out.println("NOT null");
-
-        return l;
+    public List<Student> getStudenti(String name, String surname) {
+        return em.createNamedQuery("Student.getByNameSurname").setParameter(1, name).setParameter(2, surname).getResultList();
     }
 }

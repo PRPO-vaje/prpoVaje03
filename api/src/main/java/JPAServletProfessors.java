@@ -16,14 +16,12 @@ import java.util.List;
 public class JPAServletProfessors extends HttpServlet {
 
     @Inject
-    private StudentiZrno studentiZrno;
-    @Inject
     private ProfessorBean professorBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Professor> professors = professorBean.getProfessors();
+        List<Professor> professors = professorBean.getProfessorsCriteriaAPI();
 
         resp.getWriter().println(professors.toString());
 

@@ -1,6 +1,7 @@
 package si.fri.prpoVaje03.entitete;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name="topic")
 @Table(name="topics", schema="public")
@@ -26,6 +27,14 @@ public class Topic {
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     private Professor author;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "APPLIED_STUDENTS",
+            joinColumns = {@JoinColumn(name = "TOPIC_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "STUDENT_ID")}
+    )
+    private List<Student> appliedStudents;
 
     public Integer getTopicId() {
         return id;
@@ -55,4 +64,8 @@ public class Topic {
         this.author = author;
     }
 
+    @Override
+    public String toString() {
+        return "\nTopic: {id: "+ id.toString() + " title: " + title + " description: " + description + "}";
+    }
 }

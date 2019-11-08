@@ -15,11 +15,6 @@ import java.util.List;
 
 @WebServlet("/servlet/topics")
 public class JPAServletTopics extends HttpServlet {
-
-    @Inject
-    private StudentiZrno studentiZrno;
-    @Inject
-    private ProfessorBean professorBean;
     @Inject
     private TopicsBean topicsBean;
 

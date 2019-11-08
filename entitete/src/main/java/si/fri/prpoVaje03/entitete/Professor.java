@@ -1,7 +1,5 @@
 package si.fri.prpoVaje03.entitete;
 
-import org.eclipse.persistence.oxm.annotations.XmlWriteOnly;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +9,7 @@ import java.util.List;
         {
                 @NamedQuery(name = "Professor.getAll", query = "SELECT o FROM professor o"),
                 @NamedQuery(name = "Professor.getByID", query = "SELECT o FROM professor o WHERE o.id = ?1"),
-                @NamedQuery(name = "Professor.getByNameSurname", query = "SELECT o FROM professor o WHERE o.firstName = ?1 and o.lastName = ?1")
+                @NamedQuery(name = "Professor.getByNameSurname", query = "SELECT o FROM professor o WHERE o.firstName = ?1 and o.lastName = ?2")
         })
 public class Professor {
 
@@ -31,7 +29,6 @@ public class Professor {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
     private List<Topic> topics;
-
 
     public Integer getProfessorId() {
         return id;
@@ -63,5 +60,10 @@ public class Professor {
 
     public List<Topic> getProfessorTopics() { return topics; }
     public void setProfessorTopics(List<Topic> topics) { this.topics = topics; }
+
+    @Override
+    public String toString() {
+        return "\nPROFESSOR:\nid: "+ id.toString() + "\nname: " + firstName + " " + lastName + "\nemail: " + email + "\n" + topics.toString() + "\n";
+    }
 
 }

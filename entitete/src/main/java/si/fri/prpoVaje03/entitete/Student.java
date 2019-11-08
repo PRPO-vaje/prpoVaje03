@@ -1,6 +1,7 @@
 package si.fri.prpoVaje03.entitete;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name="student")
 @Table(name="students", schema="public")
@@ -30,6 +31,9 @@ public class Student {
     @Column(name="STUDENT_EMAIL")
     private String email;
 
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "appliedStudents")
+    private List<Topic> topics;
+
     public Integer getStudentId() {
         return id;
     }
@@ -56,6 +60,11 @@ public class Student {
     }
     public void setStudentMail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "\nSTUDENT:\nid: "+ id.toString() + "\nname: " + firstName + " " + lastName + "\nemail: " + email + "\n" + topics.toString() + "\n";
     }
 
 }

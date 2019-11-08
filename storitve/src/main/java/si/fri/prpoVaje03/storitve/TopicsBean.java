@@ -16,13 +16,15 @@ public class TopicsBean {
     private EntityManager em;
 
     public List<Topic> getTopics() {
-        Query q = em.createNamedQuery("Topic.getAll");
+        return em.createNamedQuery("Topic.getAll").getResultList();
+    }
 
-        List<Topic> l = q.getResultList();
+    public List<Topic> getTopics(int id) {
+        return em.createNamedQuery("Topic.getByID").setParameter(1, id).getResultList();
+    }
 
-        System.out.println(l);
-
-        return l;
+    public List<Topic> getTopics(String name, String surname) {
+        return em.createNamedQuery("Topic.getByAuthor").setParameter(1, name).setParameter(2, surname).getResultList();
     }
 
 }
