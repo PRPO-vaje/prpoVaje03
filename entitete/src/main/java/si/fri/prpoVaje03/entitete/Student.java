@@ -7,7 +7,9 @@ import javax.persistence.*;
 @NamedQueries(value =
         {
                 @NamedQuery(name = "Student.getAll", query = "SELECT o FROM student o"),
-                @NamedQuery(name = "Student.getByNumber", query = "SELECT o FROM student o WHERE o.studentNumber = ?1") //Query query = em.createNamedQuery("Student.getByNumber").setParameter(1, studentNumber);
+                @NamedQuery(name = "Student.getByNumber", query = "SELECT o FROM student o WHERE o.studentNumber = ?1"), //Query query = em.createNamedQuery("Student.getByNumber").setParameter(1, studentNumber);
+                @NamedQuery(name = "Student.getByID", query = "SELECT o FROM student o WHERE o.id = ?1"),
+                @NamedQuery(name = "Student.getByNameSurname", query = "SELECT o FROM student o WHERE o.firstName = ?1 and o.lastName = ?1")
         })
 public class Student {
 
@@ -27,8 +29,6 @@ public class Student {
 
     @Column(name="STUDENT_EMAIL")
     private String email;
-
-    // getter in setter metode
 
     public Integer getStudentId() {
         return id;

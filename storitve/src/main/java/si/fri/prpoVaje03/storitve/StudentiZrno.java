@@ -1,10 +1,8 @@
 package si.fri.prpoVaje03.storitve;
 
-import si.fri.prpoVaje03.entitete.Opomnik;
 import si.fri.prpoVaje03.entitete.Student;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.List;
 

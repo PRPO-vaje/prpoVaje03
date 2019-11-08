@@ -1,4 +1,6 @@
+import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Student;
+import si.fri.prpoVaje03.storitve.ProfessorBean;
 import si.fri.prpoVaje03.storitve.StudentiZrno;
 
 import javax.inject.Inject;
@@ -15,11 +17,16 @@ public class JPAServlet extends HttpServlet {
 
     @Inject
     private StudentiZrno studentiZrno;
+    @Inject
+    private ProfessorBean professorBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Student> studenti = studentiZrno.getStudenti();
+        List<Professor> professors = null;
+        if(professorBean != null)
+            professors = professorBean.getProfessors();
 
         // izpis uporabnikov na spletno stran
 

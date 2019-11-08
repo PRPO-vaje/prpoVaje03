@@ -4,6 +4,8 @@
         <jta-data-source>jdbc/uporabniki</jta-data-source>
 
         <class>si.fri.prpoVaje03.entitete.Student</class>
+        <class>si.fri.prpoVaje03.entitete.Topic</class>
+        <class>si.fri.prpoVaje03.entitete.Professor</class>
 
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
