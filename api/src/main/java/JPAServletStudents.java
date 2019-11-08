@@ -17,8 +17,6 @@ public class JPAServletStudents extends HttpServlet {
 
     @Inject
     private StudentiZrno studentiZrno;
-    @Inject
-    private ProfessorBean professorBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

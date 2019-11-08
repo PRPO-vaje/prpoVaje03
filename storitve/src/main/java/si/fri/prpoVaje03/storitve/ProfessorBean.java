@@ -11,19 +11,10 @@ import java.util.List;
 
 @ApplicationScoped
 public class ProfessorBean {
-    //@Inject
+
     @PersistenceContext(unitName = "prpoVaje03-JPA")
     private EntityManager em;
-
-    //EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("prpoVaje03-JPA");
-    //private EntityManager em = entityManagerFactory.createEntityManager();
-
     public List<Professor> getProfessors() {
-
-        if(em==null)
-            System.out.println("em null");
-        else
-            System.out.println("em NOT null");
 
         Query q = em.createNamedQuery("Professor.getAll");
 

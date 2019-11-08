@@ -8,12 +8,9 @@ import java.util.List;
 
 @ApplicationScoped
 public class StudentiZrno {
-    //@Inject
+
     @PersistenceContext(unitName = "prpoVaje03-JPA")
     private EntityManager em;
-
-    //EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("prpoVaje03-JPA");
-    //private EntityManager em = entityManagerFactory.createEntityManager();
 
     public List<Student> getStudenti() {
 
