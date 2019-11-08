@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/servlet")
-public class JPAServlet extends HttpServlet {
+@WebServlet("/servlet/professors")
+public class JPAServletProfessors extends HttpServlet {
 
     @Inject
     private StudentiZrno studentiZrno;
@@ -23,14 +23,9 @@ public class JPAServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Student> studenti = studentiZrno.getStudenti();
-        List<Professor> professors = null;
-        if(professorBean != null)
-            professors = professorBean.getProfessors();
+        List<Professor> professors = professorBean.getProfessors();
 
-        // izpis uporabnikov na spletno stran
-
-        resp.getWriter().println(studenti.toString());
+        resp.getWriter().println(professors.toString());
 
     }
 }
