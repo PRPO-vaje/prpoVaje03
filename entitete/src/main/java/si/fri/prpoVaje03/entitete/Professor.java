@@ -1,6 +1,8 @@
 package si.fri.prpoVaje03.entitete;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name="professor")
@@ -9,7 +11,9 @@ import java.util.List;
         {
                 @NamedQuery(name = "Professor.getAll", query = "SELECT o FROM professor o"),
                 @NamedQuery(name = "Professor.getByID", query = "SELECT o FROM professor o WHERE o.id = ?1"),
-                @NamedQuery(name = "Professor.getByNameSurname", query = "SELECT o FROM professor o WHERE o.firstName = ?1 and o.lastName = ?2")
+                @NamedQuery(name = "Professor.getByNameSurname", query = "SELECT o FROM professor o WHERE o.firstName = ?1 and o.lastName = ?2"),
+//                @NamedQuery(name = "Professor.update", query = "UPDATE professor o SET o.firstName = ?1, o.lastName = ?2, o.email = ?3 WHERE o.id = ?4"),
+//                @NamedQuery(name = "Professor.delete", query = "DELETE FROM professor o WHERE o.id = ?1")
         })
 public class Professor {
 
@@ -28,7 +32,7 @@ public class Professor {
     private String email;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
-    private List<Topic> topics;
+    private List<Topic> topics = new ArrayList<>();
 
     public Integer getProfessorId() {
         return id;

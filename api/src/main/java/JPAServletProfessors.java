@@ -1,6 +1,7 @@
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Student;
 import si.fri.prpoVaje03.storitve.ProfessorBean;
+import si.fri.prpoVaje03.storitve.ProfessorManagerBean;
 import si.fri.prpoVaje03.storitve.StudentiZrno;
 
 import javax.inject.Inject;
@@ -12,18 +13,66 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/servlet/professors")
+@WebServlet("/servlet/professors/*")
 public class JPAServletProfessors extends HttpServlet {
 
     @Inject
-    private ProfessorBean professorBean;
+    private ProfessorManagerBean professorBean;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Professor> professors = professorBean.getProfessorsCriteriaAPI();
+        List<Professor> professors = professorBean.getAll();
 
         resp.getWriter().println(professors.toString());
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String email = req.getParameter("email");
+
+        Professor p = professorBean.create(firstName, lastName, email);
+
+        resp.getWriter().println(p.toString());
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String email = req.getParameter("email");
+
+        Professor p = professorBean.update(id, firstName, lastName, email);
+
+        resp.getWriter().println(p.toString());
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String pathInfo = req.getPathInfo();
+
+        if(pathInfo == null || pathInfo.equals("/")){
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        String[] splits = pathInfo.split("/");
+
+        if(splits.length != 2) {
+
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        String id = splits[1];
+
+        professorBean.delete(id);
+
+        resp.getWriter().println();
+    }
+
 }

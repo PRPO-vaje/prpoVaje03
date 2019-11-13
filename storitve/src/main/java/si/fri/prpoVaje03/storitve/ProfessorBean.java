@@ -4,6 +4,8 @@ import org.eclipse.persistence.sessions.Session;
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Topic;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,10 +14,25 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class ProfessorBean {
+
+    private static final Logger LOGGER = Logger.getLogger(ProfessorBean.class.getName());
+
+    @PostConstruct
+    public void init(){
+        LOGGER.log(Level.INFO, "initialized");
+    }
+
+    @PreDestroy
+    public void destory(){
+        LOGGER.log(Level.INFO, "destroyed");
+    }
 
     @PersistenceContext(unitName = "prpoVaje03-JPA")
     private EntityManager em;
@@ -35,11 +52,30 @@ public class ProfessorBean {
         return em.createNamedQuery("Professor.getAll").getResultList();
     }
 
-    public List<Professor> getProfessor(int id){
-        return em.createNamedQuery("Professor.getByID").setParameter(1, id).getResultList();
+    public Professor getProfessor(int id){
+        return em.find(Professor.class, id);
+//        return em.createNamedQuery("Professor.getByID").setParameter(1, id).getResultList();
     }
 
     public List<Professor> getProfessor(String name, String surname) {
         return em.createNamedQuery("Professor.getByNameSurname").setParameter(1, name).setParameter(2, surname).getResultList();
     }
+
+    @Transactional(Transactional.TxType.REQUIRED)
+    public void createProfessor(Professor p) {
+        em.persist(p);
+        em.flush();
+    }
+
+    @Transactional(Transactional.TxType.REQUIRED)
+    public void updateProfessor(Professor p) {
+        em.merge(p);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRED)
+    public void deleteProfessor(int id) {
+        em.remove(em.find(Professor.class, id));
+        em.flush();
+    }
+
 }
