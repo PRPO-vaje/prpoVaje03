@@ -30,27 +30,27 @@ public class StudentiZrno {
     public List<Student> getStudenti() {
         return em.createNamedQuery("Student.getAll").getResultList();
     }
-    public List<Student> getStudenti(String number) {
+    public List<Student> getStudents(String number) {
         return em.createNamedQuery("Student.getByNumber").setParameter(1, number).getResultList();
     }
 
-    public List<Student> getStudenti(int id) {
+    public List<Student> getStudents(int id) {
         return em.createNamedQuery("Student.getByID").setParameter(1, id).getResultList();
     }
 
-    public List<Student> getStudenti(String name, String surname) {
+    public List<Student> getStudents(String name, String surname) {
         return em.createNamedQuery("Student.getByNameSurname").setParameter(1, name).setParameter(2, surname).getResultList();
     }
 
-    public void createProfessor(Student s) {
+    public void createStudent(Student s) {
         em.persist(s);
     }
 
-    public void updateProfessor(Student s) {
+    public void updateStudent(Student s) {
         em.merge(s);
     }
 
-    public void deleteProfessor(int id) {
+    public void deleteStudent(int id) {
         em.remove(em.find(Student.class, id));
     }
 }

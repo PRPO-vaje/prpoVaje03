@@ -43,15 +43,15 @@ public class TopicsBean {
         return em.createNamedQuery("Topic.getByAuthor").setParameter(1, name).setParameter(2, surname).getResultList();
     }
 
-    public void createProfessor(Topic t) {
+    public void createTopic(Topic t) {
         em.persist(t);
     }
 
-    public void updateProfessor(Topic t) {
+    public void updateTopic(Topic t) {
         em.merge(t);
     }
 
-    public void deleteProfessor(int id) {
+    public void deleteTopic(int id) {
         em.remove(em.find(Topic.class, id));
     }
 

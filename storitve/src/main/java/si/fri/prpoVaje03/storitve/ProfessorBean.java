@@ -18,20 +18,23 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.UUID;
 
 @ApplicationScoped
 public class ProfessorBean {
 
     private static final Logger LOGGER = Logger.getLogger(ProfessorBean.class.getName());
 
+    private java.util.UUID UUID = java.util.UUID.randomUUID();
+
     @PostConstruct
     public void init(){
-        LOGGER.log(Level.INFO, "initialized");
+        LOGGER.log(Level.INFO, "initialized UUID: " + UUID);
     }
 
     @PreDestroy
     public void destory(){
-        LOGGER.log(Level.INFO, "destroyed");
+        LOGGER.log(Level.INFO, "destroyed UUID: " + UUID);
     }
 
     @PersistenceContext(unitName = "prpoVaje03-JPA")

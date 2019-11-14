@@ -32,7 +32,7 @@ public class Professor {
     private String email;
 
     //@JsonBTransient
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Topic> topics = new ArrayList<>();
 
     public Integer getProfessorId() {
