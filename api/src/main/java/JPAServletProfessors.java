@@ -3,6 +3,7 @@ import si.fri.prpoVaje03.entitete.Student;
 import si.fri.prpoVaje03.storitve.ProfessorBean;
 import si.fri.prpoVaje03.storitve.ProfessorManagerBean;
 import si.fri.prpoVaje03.storitve.StudentiZrno;
+import si.fri.prpoVaje03.lib.ProfessorDTO;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -34,7 +35,12 @@ public class JPAServletProfessors extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String email = req.getParameter("email");
 
-        Professor p = professorBean.create(firstName, lastName, email);
+        ProfessorDTO profDTO = new ProfessorDTO();
+        profDTO.setProfFirstName(firstName);
+        profDTO.setProfLastName(lastName);
+        profDTO.setProfEmail(email);
+
+        Professor p = professorBean.create(profDTO);
 
         resp.getWriter().println(p.toString());
     }
@@ -46,7 +52,13 @@ public class JPAServletProfessors extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String email = req.getParameter("email");
 
-        Professor p = professorBean.update(id, firstName, lastName, email);
+        ProfessorDTO profDTO = new ProfessorDTO();
+        profDTO.setProfID(id);
+        profDTO.setProfFirstName(firstName);
+        profDTO.setProfLastName(lastName);
+        profDTO.setProfEmail(email);
+
+        Professor p = professorBean.update(profDTO);
 
         resp.getWriter().println(p.toString());
     }

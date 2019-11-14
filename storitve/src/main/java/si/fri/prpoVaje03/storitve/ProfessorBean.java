@@ -54,7 +54,7 @@ public class ProfessorBean {
 
     public Professor getProfessor(int id){
         return em.find(Professor.class, id);
-//        return em.createNamedQuery("Professor.getByID").setParameter(1, id).getResultList();
+        //return (Professor) em.createNamedQuery("Professor.getByID").setParameter(1, id).getResultList().get(0);
     }
 
     public List<Professor> getProfessor(String name, String surname) {

@@ -31,6 +31,7 @@ public class Professor {
     @Column(name="PROFESSOR_EMAIL")
     private String email;
 
+    //@JsonBTransient
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author")
     private List<Topic> topics = new ArrayList<>();
 
