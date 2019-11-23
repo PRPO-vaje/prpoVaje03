@@ -3,6 +3,7 @@ package si.fri.prpoVaje03.storitve;
 import org.eclipse.persistence.sessions.Session;
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Topic;
+import si.fri.prpoVaje03.interceptors.BeleziKlice;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -40,6 +41,7 @@ public class ProfessorBean {
     @PersistenceContext(unitName = "prpoVaje03-JPA")
     private EntityManager em;
 
+    @BeleziKlice
     public List<Professor> getProfessorsCriteriaAPI() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Professor> cr = cb.createQuery(Professor.class);

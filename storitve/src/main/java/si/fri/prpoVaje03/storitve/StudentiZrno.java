@@ -1,6 +1,7 @@
 package si.fri.prpoVaje03.storitve;
 
 import si.fri.prpoVaje03.entitete.Student;
+import si.fri.prpoVaje03.interceptors.BeleziKlice;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -27,9 +28,11 @@ public class StudentiZrno {
     @PersistenceContext(unitName = "prpoVaje03-JPA")
     private EntityManager em;
 
+    @BeleziKlice
     public List<Student> getStudenti() {
         return em.createNamedQuery("Student.getAll").getResultList();
     }
+
     public List<Student> getStudents(String number) {
         return em.createNamedQuery("Student.getByNumber").setParameter(1, number).getResultList();
     }
