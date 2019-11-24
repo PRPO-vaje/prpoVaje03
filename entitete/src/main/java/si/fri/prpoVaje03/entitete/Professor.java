@@ -31,16 +31,12 @@ public class Professor {
     @Column(name="PROFESSOR_EMAIL")
     private String email;
 
-    //@JsonBTransient
+    //@javax.json.bind.annotation.JsonbTransient
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Topic> topics = new ArrayList<>();
 
-    public Integer getProfessorId() {
-        return id;
-    }
-    public void setProfessorId(Integer id) {
-        this.id = id;
-    }
+    public Integer getId() { return id; }
+    public void setProfessorId(Integer id) { this.id = id; }
 
     public String getProfessorFirstName() {
         return firstName;

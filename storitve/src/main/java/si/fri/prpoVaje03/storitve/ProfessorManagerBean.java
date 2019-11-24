@@ -70,6 +70,7 @@ public class ProfessorManagerBean {
                 profDTO.getProfFirstName() == null || profDTO.getProfFirstName().trim().isEmpty() ||
                 profDTO.getProfLastName() == null || profDTO.getProfLastName().trim().isEmpty() ||
                 profDTO.getProfEmail() == null || profDTO.getProfEmail().trim().isEmpty()) {
+            System.out.println("RETURNING NULL");
             return null;
         }
 

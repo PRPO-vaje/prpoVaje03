@@ -1,10 +1,13 @@
 package si.fri.prpoVaje03.lib;
 
+import javax.json.bind.annotation.JsonbTransient;
+
 public class TopicDTO {
-    private String id;
-    private String title;
-    private String description;
-    private ProfessorDTO author;
+    public String id;
+    public String title;
+    public String description;
+    @JsonbTransient
+    public ProfessorDTO author;
 
     public String getProfID() {
         return this.id;

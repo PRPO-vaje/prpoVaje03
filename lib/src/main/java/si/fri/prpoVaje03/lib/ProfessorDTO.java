@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfessorDTO {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private ArrayList<TopicDTO> topics = new ArrayList<TopicDTO>();
+    public String id;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public ArrayList<TopicDTO> topics = new ArrayList<TopicDTO>();
 
     public String getProfID() {
         return this.id;

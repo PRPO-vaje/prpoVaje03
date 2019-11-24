@@ -31,6 +31,7 @@ public class Student {
     @Column(name="STUDENT_EMAIL")
     private String email;
 
+    //@javax.json.bind.annotation.JsonbTransient
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "appliedStudents")
     private List<Topic> topics;
 

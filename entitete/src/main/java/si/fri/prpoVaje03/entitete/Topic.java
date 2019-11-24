@@ -24,10 +24,12 @@ public class Topic {
     @Column(name="TOPIC_DESCRIPTION")
     private String description;
 
+    @javax.json.bind.annotation.JsonbTransient
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     private Professor author;
 
+    @javax.json.bind.annotation.JsonbTransient
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "APPLIED_STUDENTS",

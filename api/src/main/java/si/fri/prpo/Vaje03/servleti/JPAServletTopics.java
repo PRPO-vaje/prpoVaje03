@@ -1,3 +1,5 @@
+package si.fri.prpo.Vaje03.servleti;
+
 import si.fri.prpoVaje03.entitete.Student;
 import si.fri.prpoVaje03.entitete.Topic;
 import si.fri.prpoVaje03.storitve.ProfessorBean;
