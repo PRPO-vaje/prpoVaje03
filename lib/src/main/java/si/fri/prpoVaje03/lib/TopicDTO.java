@@ -3,38 +3,37 @@ package si.fri.prpoVaje03.lib;
 import javax.json.bind.annotation.JsonbTransient;
 
 public class TopicDTO {
-    public String id;
-    public String title;
-    public String description;
-    @JsonbTransient
-    public ProfessorDTO author;
+    private String id;
+    private String title;
+    private String description;
+    private ProfessorDTO author;
 
-    public String getProfID() {
+    public String getTopicID() {
         return this.id;
     };
-    public void setProfID(String id) {
+    public void setTopicID(String id) {
         this.id = id;
     }
 
-    public String getProfFirstName() {
+    public String getTopicTitle() {
         return this.title;
     }
-    public void setProfFirstName(String firstName) {
+    public void setTopicTitle(String firstName) {
         this.title = firstName;
     }
 
-    public String getProfLastName() {
+    public String getTopicDescription() {
         return this.description;
     }
-    public void setProfLastName(String lastName) {
+    public void setPTopicDescription(String lastName) {
         this.description = lastName;
     }
 
     //Causes cyclic dependency, do not use or change
-    public ProfessorDTO getProfEmail() {
+    public ProfessorDTO getTopicAuthor() {
         return this.author;
     }
-    public void setProfEmail(ProfessorDTO email) {
+    public void setTopicAuthor(ProfessorDTO email) {
         this.author = email;
     }
 }

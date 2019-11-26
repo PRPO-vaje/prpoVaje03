@@ -25,7 +25,7 @@ public class JPAServletProfessors extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Professor> professors = professorBean.getAll();
+        List<ProfessorDTO> professors = professorBean.getAll();
 
         resp.getWriter().println(professors.toString());
 
@@ -42,7 +42,7 @@ public class JPAServletProfessors extends HttpServlet {
         profDTO.setProfLastName(lastName);
         profDTO.setProfEmail(email);
 
-        Professor p = professorBean.create(profDTO);
+        ProfessorDTO p = professorBean.create(profDTO);
 
         resp.getWriter().println(p.toString());
     }
@@ -60,7 +60,7 @@ public class JPAServletProfessors extends HttpServlet {
         profDTO.setProfLastName(lastName);
         profDTO.setProfEmail(email);
 
-        Professor p = professorBean.update(profDTO);
+        ProfessorDTO p = professorBean.update(profDTO);
 
         resp.getWriter().println(p.toString());
     }

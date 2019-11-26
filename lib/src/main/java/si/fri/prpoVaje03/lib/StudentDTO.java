@@ -1,36 +1,46 @@
 package si.fri.prpoVaje03.lib;
 
-public class StudentDTO {
-    public String id;
-    public String firstName;
-    public String lastName;
-    public String email;
+import java.util.ArrayList;
 
-    public String getProfID() {
+public class StudentDTO {
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private ArrayList<TopicDTO> topics = new ArrayList<TopicDTO>();
+
+    public String getStudentID() {
         return this.id;
     };
-    public void setProfID(String id) {
+    public void setStudentID(String id) {
         this.id = id;
     }
 
-    public String getProfFirstName() {
+    public String getStudentFirstName() {
         return this.firstName;
     }
-    public void setProfFirstName(String firstName) {
+    public void setStudentFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getProfLastName() {
+    public String getStudentLastName() {
         return this.lastName;
     }
-    public void setProfLastName(String lastName) {
+    public void setStudentLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getProfEmail() {
+    public String getStudentEmail() {
         return this.email;
     }
-    public void setProfEmail(String email) {
+    public void setStudentEmail(String email) {
         this.email = email;
+    }
+
+    public ArrayList<TopicDTO> getStudentTopics() {
+        return this.topics;
+    }
+    public void setStudentTopics(ArrayList<TopicDTO> topics) {
+        this.topics = topics;
     }
 }
