@@ -3,6 +3,8 @@ package si.fri.popoVaje03.mappers;
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Student;
 import si.fri.prpoVaje03.entitete.Topic;
+import si.fri.prpoVaje03.exceptions.RequestArgumentException;
+import si.fri.prpoVaje03.lib.ExceptionDTO;
 import si.fri.prpoVaje03.lib.ProfessorDTO;
 import si.fri.prpoVaje03.lib.StudentDTO;
 import si.fri.prpoVaje03.lib.TopicDTO;
@@ -11,6 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityDTOMapper {
+
+    public static ExceptionDTO MapRequestException(RequestArgumentException e) {
+        ExceptionDTO ex = new ExceptionDTO();
+        ex.setMessage(e.getMessage());
+        ex.setParameter(e.getArgument());
+        return ex;
+    }
 
     public static ProfessorDTO ProfessorToProfessoDTO(Professor professor) {
         ProfessorDTO professorDTO = new ProfessorDTO();

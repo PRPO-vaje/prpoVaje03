@@ -22,6 +22,11 @@
             <artifactId>kumuluzee-servlet-jetty</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi</artifactId>
+            <version>${kumuluzee-openapi.version}</version>
+        </dependency>
+        <dependency>
             <groupId>si.fri.prpo.vaje3</groupId>
             <artifactId>storitve</artifactId>
             <version>${revision}</version>
