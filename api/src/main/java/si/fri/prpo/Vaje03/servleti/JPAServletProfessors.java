@@ -2,6 +2,7 @@ package si.fri.prpo.Vaje03.servleti;
 
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Student;
+import si.fri.prpoVaje03.exceptions.RequestArgumentException;
 import si.fri.prpoVaje03.storitve.ProfessorBean;
 import si.fri.prpoVaje03.storitve.ProfessorManagerBean;
 import si.fri.prpoVaje03.storitve.StudentiZrno;
@@ -42,9 +43,13 @@ public class JPAServletProfessors extends HttpServlet {
         profDTO.setProfLastName(lastName);
         profDTO.setProfEmail(email);
 
-        ProfessorDTO p = professorBean.create(profDTO);
+        try {
+            ProfessorDTO p = professorBean.create(profDTO);
 
-        resp.getWriter().println(p.toString());
+            resp.getWriter().println(p.toString());
+        } catch (RequestArgumentException ex) {
+            resp.getWriter().println(ex.toString());
+        }
     }
 
     @Override
@@ -59,10 +64,13 @@ public class JPAServletProfessors extends HttpServlet {
         profDTO.setProfFirstName(firstName);
         profDTO.setProfLastName(lastName);
         profDTO.setProfEmail(email);
+        try {
+            ProfessorDTO p = professorBean.update(profDTO);
 
-        ProfessorDTO p = professorBean.update(profDTO);
-
-        resp.getWriter().println(p.toString());
+            resp.getWriter().println(p.toString());
+        } catch (RequestArgumentException ex) {
+            resp.getWriter().println(ex.toString());
+        }
     }
 
     @Override

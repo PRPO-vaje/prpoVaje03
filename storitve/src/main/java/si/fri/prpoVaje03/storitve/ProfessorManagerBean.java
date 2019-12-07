@@ -4,6 +4,7 @@ import org.eclipse.persistence.sessions.Session;
 import si.fri.popoVaje03.mappers.EntityDTOMapper;
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Topic;
+import si.fri.prpoVaje03.exceptions.RequestArgumentException;
 import si.fri.prpoVaje03.lib.ProfessorDTO;
 
 import javax.annotation.PostConstruct;
@@ -49,12 +50,13 @@ public class ProfessorManagerBean {
 
     public ProfessorDTO getProfessor(int id) { return EntityDTOMapper.ProfessorToProfessoDTO(repo.getProfessor(id)); }
 
-    public ProfessorDTO create(ProfessorDTO profDTO) {
-        if (profDTO.getProfFirstName() == null || profDTO.getProfFirstName().trim().isEmpty() ||
-                profDTO.getProfLastName() == null || profDTO.getProfLastName().trim().isEmpty() ||
-                profDTO.getProfEmail() == null || profDTO.getProfEmail().trim().isEmpty()) {
-            return null;
-        }
+    public ProfessorDTO create(ProfessorDTO profDTO) throws RequestArgumentException {
+        if (profDTO.getProfFirstName() == null || profDTO.getProfFirstName().trim().isEmpty())
+            throw new RequestArgumentException("firstName", "First name is required");
+        if (profDTO.getProfLastName() == null || profDTO.getProfLastName().trim().isEmpty())
+            throw new RequestArgumentException("lastName", "Last name is required");
+        if (profDTO.getProfEmail() == null || profDTO.getProfEmail().trim().isEmpty())
+            throw new RequestArgumentException("email", "Email is required");
 
         Professor p = new Professor();
         p.setProfessorFirstName(profDTO.getProfFirstName());
@@ -66,14 +68,18 @@ public class ProfessorManagerBean {
         return EntityDTOMapper.ProfessorToProfessoDTO(p);
     }
 
-    public ProfessorDTO update(ProfessorDTO profDTO) {
-        if (profDTO.getProfID() == null || profDTO.getProfID().trim().isEmpty() || !profDTO.getProfID().matches("\\d+") ||
-                profDTO.getProfFirstName() == null || profDTO.getProfFirstName().trim().isEmpty() ||
-                profDTO.getProfLastName() == null || profDTO.getProfLastName().trim().isEmpty() ||
-                profDTO.getProfEmail() == null || profDTO.getProfEmail().trim().isEmpty()) {
-            System.out.println("RETURNING NULL");
-            return null;
-        }
+    public ProfessorDTO update(ProfessorDTO profDTO) throws RequestArgumentException {
+        if (profDTO.getProfID() == null || profDTO.getProfID().trim().isEmpty())
+            throw new RequestArgumentException("Id", "Id is required");
+        if (!profDTO.getProfID().matches("\\d+"))
+            throw new RequestArgumentException("Id", "Id must be an integer");
+        if (profDTO.getProfFirstName() == null || profDTO.getProfFirstName().trim().isEmpty())
+            throw new RequestArgumentException("firstName", "First name is required");
+        if (profDTO.getProfLastName() == null || profDTO.getProfLastName().trim().isEmpty())
+            throw new RequestArgumentException("lastName", "Last name is required");
+        if (profDTO.getProfEmail() == null || profDTO.getProfEmail().trim().isEmpty())
+            throw new RequestArgumentException("email", "Email is required");
+
 
         int profId = Integer.parseInt(profDTO.getProfID());
         Professor p = repo.getProfessor(profId);
