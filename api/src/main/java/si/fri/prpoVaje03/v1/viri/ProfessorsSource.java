@@ -1,5 +1,6 @@
 package si.fri.prpoVaje03.v1.viri;
 
+import com.kumuluz.ee.rest.beans.QueryParameters;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
@@ -20,8 +21,10 @@ import si.fri.popoVaje03.mappers.EntityDTOMapper;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 @Path("/professors")
@@ -32,6 +35,8 @@ public class ProfessorsSource {
 
     @Inject
     private ProfessorManagerBean professorManagerBean;
+    @Context
+    protected UriInfo uriInfo;
 
     @Operation(description = "Returns list of Professors.", summary = "Professors list", tags = "professors", responses = {
             @ApiResponse(responseCode = "200",
@@ -39,10 +44,14 @@ public class ProfessorsSource {
                     content = @Content(
                             array = @ArraySchema(schema = @Schema(implementation = ProfessorDTO.class)))
             )})
+
     @GET
     public Response getProfessors() {
-        List<ProfessorDTO> professors = professorManagerBean.getAll();
-        return Response.status(Response.Status.OK).entity(professors).build();
+        QueryParameters queryParams = QueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
+        System.out.println(queryParams);
+        List<ProfessorDTO> professors = professorManagerBean.getAll(queryParams);
+        long professorCount = professorManagerBean.getAllCount(queryParams);
+        return Response.status(Response.Status.OK).entity(professors).header("X-Total-Count", professorCount).build();
     }
 
     @Operation(description = "Returns a Professor with a given id.", parameters = @Parameter(name = "id"), summary = "Professors", tags = "professors", responses = {
@@ -54,7 +63,7 @@ public class ProfessorsSource {
     @Path("{id}")
     public Response getProfessors(@PathParam("id") int id) {
         ProfessorDTO professor = professorManagerBean.getProfessor(id);
-        return Response.status(Response.Status.OK).entity("professor").build();
+        return Response.status(Response.Status.OK).entity(professor).build();
     }
 
     @Operation(description = "Creates and returns a professor", requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = ProfessorDTO.class))), summary = "Create professor", tags = "professors", responses = {

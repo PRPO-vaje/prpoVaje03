@@ -1,5 +1,7 @@
 package si.fri.prpoVaje03.storitve;
 
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import com.kumuluz.ee.rest.utils.JPAUtils;
 import org.eclipse.persistence.sessions.Session;
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Topic;
@@ -51,6 +53,16 @@ public class ProfessorBean {
         TypedQuery<Professor> query = em.createQuery(cr);
         List<Professor> results = query.getResultList();
         return results;
+    }
+
+    public List<Professor> getProfessors(QueryParameters queryParams) {
+        List<Professor> professors = JPAUtils.queryEntities(em, Professor.class, queryParams);
+        return professors;
+    }
+
+    public long getProfessorsCount(QueryParameters queryParams) {
+        long proffessorsNum = JPAUtils.queryEntitiesCount(em, Professor.class, queryParams);
+        return proffessorsNum;
     }
 
     public List<Professor> getProfessors() {
