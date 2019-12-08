@@ -79,8 +79,8 @@ public class ProfessorsSource {
     @POST
     public Response createProfessor(ProfessorDTO professorDTO) {
         try {
-        ProfessorDTO professor = professorManagerBean.create(professorDTO);
-        return Response.status(Response.Status.CREATED).entity(professor).build();
+            ProfessorDTO professor = professorManagerBean.create(professorDTO);
+            return Response.status(Response.Status.CREATED).entity(professor).build();
         } catch (RequestArgumentException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(EntityDTOMapper.MapRequestException(ex)).build();
         }

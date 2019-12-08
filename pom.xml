@@ -59,10 +59,6 @@
                 <artifactId>kumuluzee-rest-core</artifactId>
                 <version>${kumuluzee-rest.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.kumuluz.ee.rest</groupId>
-                <artifactId>kumuluzee-rest-core</artifactId>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -43,7 +43,7 @@ public class ProfessorBean {
     @PersistenceContext(unitName = "prpoVaje03-JPA")
     private EntityManager em;
 
-    @BeleziKlice
+
     public List<Professor> getProfessorsCriteriaAPI() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Professor> cr = cb.createQuery(Professor.class);
@@ -55,6 +55,7 @@ public class ProfessorBean {
         return results;
     }
 
+    @BeleziKlice
     public List<Professor> getProfessors(QueryParameters queryParams) {
         List<Professor> professors = JPAUtils.queryEntities(em, Professor.class, queryParams);
         return professors;
