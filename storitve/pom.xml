@@ -32,7 +32,11 @@
             <groupId>si.fri.prpo.vaje3</groupId>
             <artifactId>lib</artifactId>
             <version>${revision}</version>
-            <scope>compile</scope>
+<!--            <scope>compile</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.rest</groupId>
+            <artifactId>kumuluzee-rest-core</artifactId>
         </dependency>
 
     </dependencies>

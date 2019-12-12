@@ -1,5 +1,6 @@
 package si.fri.prpoVaje03.storitve;
 
+import com.kumuluz.ee.rest.beans.QueryParameters;
 import org.eclipse.persistence.sessions.Session;
 import si.fri.popoVaje03.mappers.EntityDTOMapper;
 import si.fri.prpoVaje03.entitete.Professor;
@@ -44,8 +45,14 @@ public class ProfessorManagerBean {
     @Inject
     private ProfessorBean repo;
 
-    public List<ProfessorDTO> getAll() {
-        return EntityDTOMapper.ProfessorListToDTO(repo.getProfessorsCriteriaAPI());
+    public List<ProfessorDTO> getAll(QueryParameters queryParams) {
+        //return EntityDTOMapper.ProfessorListToDTO(repo.getProfessorsCriteriaAPI());
+        return EntityDTOMapper.ProfessorListToDTO(repo.getProfessors(queryParams));
+    }
+
+    public long getAllCount(QueryParameters queryParams) {
+        //return EntityDTOMapper.ProfessorListToDTO(repo.getProfessorsCriteriaAPI());
+        return repo.getProfessorsCount(queryParams);
     }
 
     public ProfessorDTO getProfessor(int id) { return EntityDTOMapper.ProfessorToProfessoDTO(repo.getProfessor(id)); }
