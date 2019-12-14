@@ -12,3 +12,6 @@ kumuluzee:
         username: postgres
         password: postgres
         max-pool-size: 20
+  storage:
+    base-url: http://localhost:8081/v1/fileTransfer
+    bucket: /prpo-bucket

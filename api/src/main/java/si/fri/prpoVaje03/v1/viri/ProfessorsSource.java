@@ -19,6 +19,7 @@ import si.fri.prpoVaje03.storitve.ProfessorManagerBean;
 import si.fri.popoVaje03.mappers.EntityDTOMapper;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -30,7 +31,7 @@ import java.util.List;
 @Path("/professors")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@ApplicationScoped
+@RequestScoped
 public class ProfessorsSource {
 
     @Inject

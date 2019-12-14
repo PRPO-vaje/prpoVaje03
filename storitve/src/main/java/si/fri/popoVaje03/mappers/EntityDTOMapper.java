@@ -1,13 +1,12 @@
 package si.fri.popoVaje03.mappers;
 
+import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
+import si.fri.prpoVaje03.entitete.FileUpload;
 import si.fri.prpoVaje03.entitete.Professor;
 import si.fri.prpoVaje03.entitete.Student;
 import si.fri.prpoVaje03.entitete.Topic;
 import si.fri.prpoVaje03.exceptions.RequestArgumentException;
-import si.fri.prpoVaje03.lib.ExceptionDTO;
-import si.fri.prpoVaje03.lib.ProfessorDTO;
-import si.fri.prpoVaje03.lib.StudentDTO;
-import si.fri.prpoVaje03.lib.TopicDTO;
+import si.fri.prpoVaje03.lib.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +51,7 @@ public class EntityDTOMapper {
         topicDTO.setTopicID(topic.getTopicId().toString());
         topicDTO.setTopicTitle(topic.getTopicTitle());
         topicDTO.setPTopicDescription(topic.getDescription());
+        topicDTO.setFiles(FileUploadToDTO(topic.getFiles()));
         //topicDTO.setTopicAuthor(ProfessorToProfessoDTO(topic.getAuthor()));
         return topicDTO;
     }
@@ -60,6 +60,21 @@ public class EntityDTOMapper {
     public static ArrayList<TopicDTO> topicListToDTO(List<Topic> topics){
         ArrayList<TopicDTO> ret = new ArrayList<TopicDTO>();
         topics.forEach((t)->ret.add(topicToDTO(t)));
+        return ret;
+    }
+
+    private static FileUploadDTO fileToDTO(FileUpload file) {
+        FileUploadDTO dto = new FileUploadDTO();
+        dto.setId(file.getId().toString());
+        dto.setName(file.getName());
+        dto.setKey(file.getKey());
+        dto.setUrl(file.getUrl());
+        return dto;
+    }
+
+    private static ArrayList<FileUploadDTO> FileUploadToDTO(List<FileUpload> files) {
+        ArrayList<FileUploadDTO> ret = new ArrayList<FileUploadDTO>();
+        files.forEach((t)->ret.add(fileToDTO(t)));
         return ret;
     }
 

@@ -1,6 +1,7 @@
 package si.fri.prpoVaje03.entitete;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name="topic")
@@ -28,6 +29,9 @@ public class Topic {
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     private Professor author;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = FileUpload.class)
+    private List<FileUpload> files = new ArrayList<>();
 
     @javax.json.bind.annotation.JsonbTransient
     @ManyToMany(fetch = FetchType.EAGER)
@@ -64,6 +68,22 @@ public class Topic {
     }
     public void setAuthor(Professor author) {
         this.author = author;
+    }
+
+    public List<Student> getAppliedStudents() {
+        return appliedStudents;
+    }
+
+    public void setAppliedStudents(List<Student> appliedStudents) {
+        this.appliedStudents = appliedStudents;
+    }
+
+    public List<FileUpload> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<FileUpload> files) {
+        this.files = files;
     }
 
     @Override

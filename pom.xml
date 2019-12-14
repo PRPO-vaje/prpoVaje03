@@ -28,6 +28,8 @@
         <postgresql.version>42.2.8</postgresql.version>
         <kumuluzee-config.version>1.3.0-SNAPSHOT</kumuluzee-config.version>
         <kumuluzee-openapi.version>1.0.1</kumuluzee-openapi.version>
+        <multipart.version>2.28</multipart.version>
+
     </properties>
 
     <dependencyManagement>
@@ -77,6 +79,11 @@
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-json-b-yasson</artifactId>
             <version>${kumuluzee.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>${multipart.version}</version>
         </dependency>
     </dependencies>
 
