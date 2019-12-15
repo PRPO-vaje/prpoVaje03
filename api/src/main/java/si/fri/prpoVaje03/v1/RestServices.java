@@ -21,6 +21,7 @@ public class RestServices extends javax.ws.rs.core.Application {
         final Set<Class<?>> resources = new HashSet<Class<?>>();
         resources.add(MultiPartFeature.class);
         resources.add(si.fri.prpoVaje03.v1.viri.TopicsSource.class);
+        resources.add(si.fri.prpoVaje03.v1.viri.ProfessorsSource.class);
         return resources;
     }
 }
