@@ -1,7 +1,6 @@
 package si.fri.prpoVaje03.storitve;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
-import org.omg.CORBA.portable.ApplicationException;
 import si.fri.popoVaje03.mappers.EntityDTOMapper;
 import si.fri.prpoVaje03.entitete.FileUpload;
 import si.fri.prpoVaje03.entitete.Topic;
