@@ -32,3 +32,9 @@ kumuluzee:
       data-source-health-check:
         type: liveness
         jndi-name: jdbc/uporabniki
+  cors-filter:
+    annotations:
+      professors-resource:
+        allow-generic-http-requests: true
+        allow-origin: "*"
+        supported-methods: "GET, POST, HEAD, OPTIONS, DELETE"

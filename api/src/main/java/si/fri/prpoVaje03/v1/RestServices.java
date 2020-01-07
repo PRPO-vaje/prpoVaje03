@@ -1,5 +1,6 @@
 package si.fri.prpoVaje03.v1;
 
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 import com.kumuluz.ee.discovery.annotations.RegisterService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -22,6 +23,7 @@ public class RestServices extends javax.ws.rs.core.Application {
         resources.add(MultiPartFeature.class);
         resources.add(si.fri.prpoVaje03.v1.viri.TopicsSource.class);
         resources.add(si.fri.prpoVaje03.v1.viri.ProfessorsSource.class);
+        resources.add(si.fri.prpoVaje03.v1.ReqFilter.class);
         return resources;
     }
 }

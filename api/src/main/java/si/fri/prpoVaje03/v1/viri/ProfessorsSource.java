@@ -1,5 +1,6 @@
 package si.fri.prpoVaje03.v1.viri;
 
+import com.kumuluz.ee.cors.annotations.CrossOrigin;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,6 +19,7 @@ import si.fri.prpoVaje03.storitve.ProfessorBean;
 import si.fri.prpoVaje03.storitve.ProfessorManagerBean;
 import si.fri.popoVaje03.mappers.EntityDTOMapper;
 
+import javax.annotation.security.PermitAll;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -32,6 +34,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
+@CrossOrigin(name="professors-resource", maxAge = 3600)
 public class ProfessorsSource {
 
     @Inject
@@ -53,6 +56,19 @@ public class ProfessorsSource {
         List<ProfessorDTO> professors = professorManagerBean.getAll(queryParams);
         long professorCount = professorManagerBean.getAllCount(queryParams);
         return Response.status(Response.Status.OK).entity(professors).header("X-Total-Count", professorCount).build();
+    }
+
+    @OPTIONS
+    @PermitAll
+    @Path("{id}")
+    public Response options() {
+        return Response.ok().build();
+    }
+
+    @OPTIONS
+    @PermitAll
+    public Response options1() {
+        return Response.ok().build();
     }
 
     @Operation(description = "Returns a Professor with a given id.", parameters = @Parameter(name = "id"), summary = "Professors", tags = "professors", responses = {
@@ -117,5 +133,8 @@ public class ProfessorsSource {
         professorManagerBean.delete(id);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
+
+
+
 
 }
